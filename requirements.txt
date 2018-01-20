@@ -1,0 +1,8 @@
+Django==2.0.1
+django-bootstrap3-datetimepicker-2==2.5.0
+django-cleanup==2.1.0
+django-crispy-forms==1.7.0
+django-filter==1.1.0
+Markdown==2.6.11
+Pillow==5.0.0
+pytz==2017.3

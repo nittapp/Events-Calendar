@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {% for event in events %}
+        <div class="col-md-6 col-lg-4" style="margin-bottom: 15px;">
+            <div class="card">
+                <img class="img-fluid" src="{{event.image.url}}" alt="Card image cap">
+                <div class="card-body">
+                    <h4 class="card-title">{{event.name}}</h4>
+                    <h5 class="card-text" style="font-size:14px;font-weight: bold;">{{event.start}}, {{event.venue}}</h5>
+                    <p class="card-text">{{event.category}}</p>
+                    <a class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal-{{event.id}}">More Details</a>
+                    {%if is_admin %}
+                        <a class="btn btn-warning btn-sm" href="{% url 'events:event_edit' event_id=event.id %}">Edit</a>
+                        <a class="btn btn-danger btn-sm" href="{% url 'events:event_delete' event_id=event.id %}">Delete</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <div id="modal-{{event.id}}" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">{{event.name}}</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <center>
+                        <img class="img-fluid" src="{{event.image.url}}" style="margin-bottom: 20px;">
+                        <h5 style="margin-bottom: 20px;">{{event.description}}</h5>
+                    </center>
+                    <p><b>Timings : </b> {{event.start}} to {{event.end}}</p>
+                    <p><b>Venue : </b> {{event.venue}}</p>
+                    <p><b>Category : </b> {{event.category}}</p>
+                </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}
