@@ -1,0 +1,170 @@
+#mainNav {
+    border-color: rgba(34, 34, 34, 0.05);
+    background-color: #011c38;
+    -webkit-transition: all .35s;
+    -moz-transition: all .35s;
+    transition: all .35s;
+    font-family: 'Catamaran', 'Helvetica', 'Arial', 'sans-serif';
+    font-weight: 200;
+    letter-spacing: 1px;
+    min-width: 600px;
+  }
+  
+  #mainNav .navbar-brand {
+    color: #fdcc52;
+    font-family: 'Catamaran', 'Helvetica', 'Arial', 'sans-serif';
+    font-weight: 200;
+    letter-spacing: 1px;
+  }
+  
+  #mainNav .navbar-brand:hover, #mainNav .navbar-brand:focus {
+    color: #fcbd20;
+  }
+  
+  #mainNav .navbar-toggler {
+    font-size: 12px;
+    padding: 8px 10px;
+    color: #222222;
+  }
+  
+  #mainNav .navbar-nav > li > a {
+    font-size: 11px;
+    font-family: 'Lato', 'Helvetica', 'Arial', 'sans-serif';
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+  
+  #mainNav .navbar-nav > li > a.active {
+    color: #fdcc52 !important;
+    background-color: transparent;
+  }
+  
+  #mainNav .navbar-nav > li > a.active:hover {
+    background-color: transparent;
+  }
+  
+  #mainNav .navbar-nav > li > a,
+  #mainNav .navbar-nav > li > a:focus {
+    color: #222222;
+  }
+  
+  #mainNav .navbar-nav > li > a:hover,
+  #mainNav .navbar-nav > li > a:focus:hover {
+    color: #fdcc52;
+  }
+  
+  .image-full {
+    display: none;
+  }
+  .image-mobile {
+    display: block;
+  }
+  
+  @media (min-width: 468px) {
+    .image-full {
+      display: block;
+    }
+    .image-mobile {
+      display: none;
+    }
+  }
+  
+  @media (min-width: 992px) {
+    #mainNav {
+      border-color: #011c38;
+      background-color: #011c38;
+    }
+    #mainNav .navbar-brand {
+      color: fade(#011c38, 70%);
+    }
+    #mainNav .navbar-brand:hover, #mainNav .navbar-brand:focus {
+      color: #011c38;
+    }
+    #mainNav .navbar-nav > li > a,
+    #mainNav .navbar-nav > li > a:focus {
+      color: #011c38;
+    }
+    #mainNav .navbar-nav > li > a:hover,
+    #mainNav .navbar-nav > li > a:focus:hover {
+      color: #011c38;
+    }
+    #mainNav.navbar-shrink {
+      border-color: rgba(34, 34, 34, 0.1);
+      background-color: #011c38;
+    }
+    #mainNav.navbar-shrink .navbar-brand {
+      color: #222222;
+    }
+    #mainNav.navbar-shrink .navbar-brand:hover, #mainNav.navbar-shrink .navbar-brand:focus {
+      color: #fdcc52;
+    }
+    #mainNav.navbar-shrink .navbar-nav > li > a,
+    #mainNav.navbar-shrink .navbar-nav > li > a:focus {
+      color: #222222;
+    }
+    #mainNav.navbar-shrink .navbar-nav > li > a:hover,
+    #mainNav.navbar-shrink .navbar-nav > li > a:focus:hover {
+      color: #fdcc52;
+    }
+}
+
+#wrap {
+    width: 100%;
+    margin: 0 auto;
+}
+    
+#external-events {
+    float: left;
+    width: 150px;
+    padding: 0 10px;
+    text-align: left;
+}
+    
+#external-events h4 {
+    font-size: 16px;
+    margin-top: 0;
+    padding-top: 1em;
+}
+    
+.external-event { /* try to mimick the look of a real event */
+    margin: 10px 0;
+    padding: 2px 4px;
+    background: #3366CC;
+    color: #fff;
+    font-size: .85em;
+    cursor: pointer;
+}
+    
+#external-events p {
+    margin: 1.5em 0;
+    font-size: 11px;
+    color: #666;
+}
+    
+#external-events p input {
+    margin: 0;
+    vertical-align: middle;
+}
+
+#calendar {
+    margin: 0 auto;
+    width: 90%;
+    min-width: 600px;
+    background-color: #FFFFFF;
+    border-radius: 6px;
+    box-shadow: 0 1px 2px #C3C3C3;
+    -webkit-box-shadow: 0px 0px 21px 2px rgba(0,0,0,0.18);
+    -moz-box-shadow: 0px 0px 21px 2px rgba(0,0,0,0.18);
+    box-shadow: 0px 0px 21px 2px rgba(0,0,0,0.18);
+}
+
+.bg-primary {
+    background: #011c38;
+    background: -webkit-linear-gradient(#011c38, #011c38);
+    background: linear-gradient(#011c38, #011c38);
+    color: white
+  }
+
+  .fc-event {
+      cursor: pointer;
+  }

@@ -1,3 +1,4 @@
+from json import dumps
 from datetime import datetime
 
 from django.http import HttpResponse, JsonResponse
@@ -5,6 +6,7 @@ from django.views import View
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.utils.decorators import method_decorator
+from django.forms.models import model_to_dict
 
 from .forms import CategoryForm, EventForm
 from .models import Category, Event
@@ -19,6 +21,28 @@ class EventsListView(View):
             'is_admin': is_admin(request)
         })
 
+class EventsCalendarView(View):
+    def get(self, request):
+        events = Event.objects.all()
+        calendar_event_objects = []
+
+        for event in events:
+            calendar_event_objects.append({
+                'id': event.id,
+                'title': event.name,
+                'start': event.start.isoformat(),
+                'end': event.end.isoformat(),
+                'start_display': event.start.strftime("%b. %d, %Y, %I:%M %p"),
+                'end_display': event.end.strftime("%b. %d, %Y, %I:%M %p"),
+                'image': event.image.url,
+                'description': event.description,
+                'venue': event.venue,
+                'category': event.category.name
+            })
+
+        return render(request, 'calendar.html', {
+            'calendar_events': dumps(calendar_event_objects)
+        })
 
 @method_decorator(admin_route, name='dispatch')
 class EventCreateView(View):
