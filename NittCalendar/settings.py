@@ -121,6 +121,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
-MEDIA_URL = 'http://localhost/'
-MEDIA_ROOT = '/srv/http'
+STATIC_ROOT = '/static/'
+MEDIA_URL = '/uploads/'
+MEDIA_ROOT = '/uploads/'
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
+
+if os.environ.get('DJANGO_PRODUCTION', 'false') == 'true':
+    from .settings_production import *

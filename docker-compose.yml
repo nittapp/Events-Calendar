@@ -1,0 +1,35 @@
+version : '3'
+
+services:
+    django_app:
+        image: python:3
+        container_name: calendar-app
+        depends_on:
+        - db
+        restart: always
+        ports:
+        - "3000:80"
+        build:
+            context: ./
+            dockerfile: Dockerfile
+        volumes:
+        - .:/usr/src/app
+        env_file:
+        - .env
+
+    db:
+        image: mysql:latest
+        container_name: calendar-mysql
+        volumes:
+        - ./db:/var/lib/mysql
+        restart: always
+        env_file:
+        - .env
+
+    php_my_admin:
+        image: phpmyadmin/phpmyadmin
+        container_name: calendar-pma
+        ports:
+        - "3001:80"
+        depends_on:
+        - db
