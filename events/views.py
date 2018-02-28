@@ -48,17 +48,16 @@ class EventsCalendarView(View):
 class EventCreateView(View):
     def get(self, request):
         form = EventForm()
-        form.helper.form_method = 'post'
-        form.helper.form_action = reverse('events:event_create')
-        return render(request, 'event.html', {'form': form})
+        title = "Create New Event"
+        return render(request, 'event.html', {'form': form, 'title': title})
 
     def post(self, request):
         form = EventForm(request.POST, request.FILES)
-
         try:
             form.save()
         except ValueError as e:
-            return render(request, 'event.html', {'form': form})
+            title = "Create New Event"
+            return render(request, 'event.html', {'form': form, 'title': title})
 
         return redirect('events:events_list')
 
@@ -85,11 +84,9 @@ class EventEditView(View):
             return redirect('events:events_list')
 
         form = EventForm(instance=event)
-        form.helper.form_method = 'post'
-        form.helper.form_action = reverse('events:event_edit', kwargs={
-            'event_id': event_id
-        })
-        return render(request, 'event.html', {'form': form})
+        title = "Edit Event"
+
+        return render(request, 'event.html', {'form': form, 'title': title})
 
     def post(self, request, event_id):
         try:
@@ -101,7 +98,8 @@ class EventEditView(View):
         try:
             form.save()
         except ValueError as e:
-            return render(request, 'event.html', {'form': form})
+            title = "Edit Event"
+            return render(request, 'event.html', {'form': form, 'title': title})
 
         return redirect('events:events_list')
 
@@ -111,35 +109,25 @@ class EventDeleteView(View):
     def get(self, request, event_id):
         try:
             event = Event.objects.get(pk=event_id)
-        except:
-            return redirect('events:events_list')
-
-        return render(request, 'event_delete.html', {'event': event})
-
-    def post(self, request, event_id):
-        try:
-            event = Event.objects.get(pk=event_id)
             event.delete()
+            return redirect('events:events_list')
         except:
             return redirect('events:events_list')
-
-        return redirect('events:events_list')
-
 
 @method_decorator(admin_route, name='dispatch')
 class CategoryCreateView(View):
     def get(self, request):
         form = CategoryForm()
-        form.helper.form_method = 'post'
-        form.helper.form_action = reverse('events:category_create')
-        return render(request, 'event.html', {'form': form})
+        title = "Create New Category"
+        return render(request, 'event.html', {'form': form, 'title': title})
 
     def post(self, request):
         form = CategoryForm(request.POST)
         try:
             form.save()
         except ValueError as e:
-            return render(request, 'event.html', {'form': form})
+            title = "Create New Category"
+            return render(request, 'event.html', {'form': form, 'title': title})
 
         return redirect('events:events_list')
         

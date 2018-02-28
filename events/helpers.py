@@ -2,10 +2,17 @@ from django.urls import reverse
 from django.shortcuts import render, redirect
 from django.utils.decorators import decorator_from_middleware
 
+def parse_headers(request):
+    headers = request.META
+    return {
+        'is_admin': headers.get("X_NITT_APP_IS_ADMIN", None) == "true",
+        'name': headers.get("X_NITT_APP_NAME", ""),
+        'user_name': headers.get("X_NITT_APP_USERNAME", "")
+    }
+
 
 def is_admin(request, **kwargs):
-    # TODO Change this to actual authentication function
-    return False
+    return parse_headers(request)['is_admin']
 
 
 def admin_route(view):

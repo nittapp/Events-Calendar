@@ -67,43 +67,28 @@
 </script>
 </head>
 <body>
-	<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
-		<div class="container">
-			<div class="container">
-					<img style="width:100%" src="{% static 'landing/img/nittfulllogo.png' %}" class = "image-full" alt="">
-					<center><img src="{% static 'landing/img/nittmobilelogo.png' %}" class = "image-mobile" alt="" width="300px"></center>
-			</div>
-		</div>
-	</nav>
 	<div id='wrap'>
-	<div id='calendar'></div>
-	<div style='clear:both'></div>
-	<div id="event-modal" class="modal fade" role="dialog" tabindex="-1">
-		<div class="modal-dialog">
-			<div class="modal-content">
-			<div class="modal-header">
-				<h4 class="modal-title" id="event-title">ABCD</h4>
-				<button type="button" class="close" data-dismiss="modal">&times;</button>
-			</div>
-			<div class="modal-body" style="text-align:left;">
-				<center>
-					<img class="img-responsive" id="event-image" src="" style="margin-bottom: 20px;">
-					<h5 style="margin-bottom: 20px;" id="event-description"></h5>
-				</center>
-				<p id="event-timings"></p>
-				<p id="event-venue"></p>
-				<p id="event-category"></p>
-			</div>
+		<div id='calendar'></div>
+		<div style='clear:both'></div>
+		<div id="event-modal" class="modal fade" role="dialog" tabindex="-1">
+			<div class="modal-dialog">
+				<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title" id="event-title"></h4>
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+				</div>
+				<div class="modal-body" style="text-align:left;">
+					<center>
+						<img class="img-responsive" id="event-image" src="" style="margin-bottom: 20px;">
+						<h5 style="margin-bottom: 20px;" id="event-description"></h5>
+					</center>
+					<p id="event-timings"></p>
+					<p id="event-venue"></p>
+					<p id="event-category"></p>
+				</div>
+				</div>
 			</div>
 		</div>
 	</div>
-</div>
-<section style="margin-top: 15px; padding-top:5px; padding-bottom:5px;" class="contact bg-primary" id="contact">
-        <div class="container">
-          <h3>Made with
-            <i class="fa fa-heart" style="color:crimson">&hearts;</i>
-            by <a href="https://deltaforce.club">Delta Force</a>.</h3>
-        </div>
-</section>  
 </body>
 </html>

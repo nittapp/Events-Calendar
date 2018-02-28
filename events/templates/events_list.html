@@ -13,14 +13,14 @@
                         <a class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal-{{event.id}}">More Details</a>
                         {%if is_admin %}
                             {% if not event.approved %}
-                                <a class="btn btn-warning btn-sm" href="{% url 'events:event_approve' event_id=event.id %}">Approve</a>
+                                <a class="btn btn-warning btn-sm" onclick="displayAlertDialog('Approve', '{% url 'events:event_approve' event_id=event.id %}');">Approve</a>
                             {% endif %}
-                            <a class="btn btn-danger btn-sm" href="{% url 'events:event_delete' event_id=event.id %}">Delete</a>
+                            <a class="btn btn-danger btn-sm" onclick="displayAlertDialog('Delete', '{% url 'events:event_delete' event_id=event.id %}');">Delete</a>
                         {% endif %}
                     </div>
                 </div>
             </div>
-            <div id="modal-{{event.id}}" class="modal fade" role="dialog">
+            <div id="modal-{{event.id}}" class="modal fade" role="dialog" tabindex="-1">
                 <div class="modal-dialog">
                     <div class="modal-content">
                     <div class="modal-header">
@@ -41,4 +41,25 @@
             </div>
         {% endif %}
     {% endfor %}
+    <div id="modal-alert-dialog" class="modal fade" role="dialog" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+            <div class="modal-body">
+                <p id="modal-alert-content"></p>
+                <center>
+                    <a data-dismiss="modal" class="btn special-color-dark btn-sm" href="#">Cancel</a>
+                    <a id="modal-alert-anchor" class="btn btn-primary btn-sm" href="#">Continue</a>
+                </center>
+            </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function displayAlertDialog(action, url) {
+            var content = "Do you want to " + action + " the event?";
+            $('#modal-alert-content').html(content);
+            $('#modal-alert-anchor').attr('href', url);
+            $('#modal-alert-dialog').modal();
+        }
+    </script>
 {% endblock %}

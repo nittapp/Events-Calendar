@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_cleanup',
-    'crispy_forms',
+    'material',
     'events.apps.EventsConfig'
 ]
 
