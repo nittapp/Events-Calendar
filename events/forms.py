@@ -32,7 +32,7 @@ class CategoryForm(ModelForm):
 class EventForm(ModelForm):
     class Meta:
         model = Event
-        fields = "__all__"
+        exclude = ['approved']
 
     def __init__(self, *args, **kwargs):
         super(EventForm, self).__init__(*args, **kwargs)

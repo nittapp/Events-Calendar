@@ -16,6 +16,7 @@ class Event(models.Model):
     end = models.DateTimeField(auto_now=False, auto_now_add=False)
     venue = models.CharField(max_length=100)
     image = models.ImageField(upload_to='events')
+    approved = models.BooleanField(default=False)
 
     def __str__(self):
         return "{} ({})".format(self.name, self.category.name)

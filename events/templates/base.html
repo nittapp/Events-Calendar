@@ -23,46 +23,25 @@
 
   <body id="page-top">
 
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
-      <div class="container">
-          <div class="container">
-                  <img style="width:100%" src="{% static 'landing/img/nittfulllogo.png' %}" class = "image-full" alt="">
-                  <center><img src="{% static 'landing/img/nittmobilelogo.png' %}" class = "image-mobile" alt="" width="300px"></center>
-          </div>
-      </div>
-    </nav>
-
     <header class="masthead">
-      <div class="container h-100">
-        {% if is_admin %}
-            <div style="float:right; margin-bottom:20px;" class="row">
-              <a class="btn btn-success btn-sm" href="{% url 'events:event_create' %}">Create Event</a>
-              <a class="btn btn-success btn-sm" href="{% url 'events:category_create' %}">Create Category</a>
-            </div>
-        {% endif %}
+      <div class="container">
+        <div style="float:right; margin-bottom:20px;" class="row">
+          <a class="btn btn-success btn-md" href="{% url 'events:event_create' %}">Create Event</a>
+          {% if is_admin %}
+              <a class="btn btn-success btn-md" href="{% url 'events:category_create' %}">Create Category</a>
+          {% endif %}
+        </div>
         <br />
-        <div class="row" style="width:100%">
+        <div class="row" style="width:100%; margin:0px;">
             {% block content %}
             {% endblock %}
         </div>
       </div>
     </header>
 
-    <section style="padding-top: 15px; padding-bottom:5px;" class="contact bg-primary" id="contact">
-        <div class="container">
-          <h3>Made with
-            <i class="fa fa-heart" style="color:crimson">&hearts;</i>
-            by <a href="https://deltaforce.club">Delta Force</a>.</h3>
-        </div>
-      </section>
-
     <!-- Bootstrap core JavaScript -->
     <script src="{% static "landing/vendor/jquery/jquery.min.js" %}"></script>
     <script src="{% static "landing/vendor/bootstrap/js/bootstrap.bundle.min.js" %}"></script>
-
-    <!-- Custom scripts for this template -->
-    <script src="{% static "landing/js/new-age.min.js" %}"></script>
 
   </body>
 

@@ -15,7 +15,7 @@ from .helpers import is_admin, admin_route
 
 class EventsListView(View):
     def get(self, request):
-        events = Event.objects.filter(start__gte=datetime.now()).order_by('start')
+        events = Event.objects.filter(end__gte=datetime.now()).order_by('start')
         return render(request, 'events_list.html', {
             'events': events,
             'is_admin': is_admin(request)
@@ -44,7 +44,7 @@ class EventsCalendarView(View):
             'calendar_events': dumps(calendar_event_objects)
         })
 
-@method_decorator(admin_route, name='dispatch')
+
 class EventCreateView(View):
     def get(self, request):
         form = EventForm()
@@ -61,6 +61,18 @@ class EventCreateView(View):
             return render(request, 'event.html', {'form': form})
 
         return redirect('events:events_list')
+
+
+@method_decorator(admin_route, name='dispatch')
+class EventApproveView(View):
+    def get(self, request, event_id):
+        try:
+            event = Event.objects.get(pk=event_id)    
+            event.approved = True
+            event.save()
+            return redirect('events:events_list')
+        except:
+            return redirect('events:events_list')
 
 
 @method_decorator(admin_route, name='dispatch')

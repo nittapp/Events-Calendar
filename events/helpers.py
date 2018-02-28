@@ -5,7 +5,7 @@ from django.utils.decorators import decorator_from_middleware
 
 def is_admin(request, **kwargs):
     # TODO Change this to actual authentication function
-    return True
+    return False
 
 
 def admin_route(view):
