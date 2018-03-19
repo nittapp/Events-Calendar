@@ -7,6 +7,7 @@ from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.utils.decorators import method_decorator
 from django.forms.models import model_to_dict
+from django.contrib.staticfiles.templatetags.staticfiles import static
 
 from .forms import CategoryForm, EventForm
 from .models import Category, Event
@@ -27,6 +28,7 @@ class EventsCalendarView(View):
         calendar_event_objects = []
 
         for event in events:
+            image = event.image.url if event.image else static('images/default-image.png')
             calendar_event_objects.append({
                 'id': event.id,
                 'title': event.name,
@@ -34,7 +36,7 @@ class EventsCalendarView(View):
                 'end': event.end.isoformat(),
                 'start_display': event.start.strftime("%b. %d, %Y, %I:%M %p"),
                 'end_display': event.end.strftime("%b. %d, %Y, %I:%M %p"),
-                'image': event.image.url,
+                'image': image,
                 'description': event.description,
                 'venue': event.venue,
                 'category': event.category.name

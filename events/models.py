@@ -15,7 +15,7 @@ class Event(models.Model):
     start = models.DateTimeField(auto_now=False, auto_now_add=False)
     end = models.DateTimeField(auto_now=False, auto_now_add=False)
     venue = models.CharField(max_length=100)
-    image = models.ImageField(upload_to='events')
+    image = models.ImageField(upload_to='events', blank=True)
     approved = models.BooleanField(default=False)
 
     def __str__(self):

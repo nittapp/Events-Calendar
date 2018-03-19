@@ -1,12 +1,17 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
     {% for event in events %}
         {%if is_admin or event.approved %}
             <div class="col-md-6 col-lg-4" style="margin-bottom: 15px;">
                 <div class="card">
-                    <img class="img-fluid" src="{{event.image.url}}" alt="Card image cap">
-                    <div class="card-body">
+                    {%if event.image %}
+                        <img class="img-fluid" src="{{event.image.url}}" alt="Card image cap">
+                    {% else %}
+                        <img class="img-fluid" src="{% static "images/default-image.png" %}" alt="Card image cap">
+                    {% endif %}
+                        <div class="card-body">
                         <h4 class="card-title">{{event.name}}</h4>
                         <h5 class="card-text" style="font-size:14px;font-weight: bold;">{{event.start}}, {{event.venue}}</h5>
                         <p class="card-text">{{event.category}}</p>
@@ -29,7 +34,11 @@
                     </div>
                     <div class="modal-body">
                         <center>
-                            <img class="img-fluid" src="{{event.image.url}}" style="margin-bottom: 20px;">
+                            {%if event.image %}
+                                <img class="img-fluid" src="{{event.image.url}}" style="margin-bottom: 20px;">
+                            {% else %}
+                                <img class="img-fluid" src="{% static "images/default-image.png" %}" style="margin-bottom: 20px;">
+                            {% endif %}
                             <h5 style="margin-bottom: 20px;">{{event.description}}</h5>
                         </center>
                         <p><b>Timings : </b> {{event.start}} to {{event.end}}</p>
