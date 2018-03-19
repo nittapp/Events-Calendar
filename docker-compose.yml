@@ -8,7 +8,7 @@ services:
         - db
         restart: always
         ports:
-        - "3000:80"
+        - "2010:80"
         build:
             context: ./
             dockerfile: Dockerfile
@@ -30,6 +30,6 @@ services:
         image: phpmyadmin/phpmyadmin
         container_name: calendar-pma
         ports:
-        - "3001:80"
+        - "2011:80"
         depends_on:
         - db
