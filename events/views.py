@@ -9,7 +9,7 @@ from django.utils.decorators import method_decorator
 from django.forms.models import model_to_dict
 from django.contrib.staticfiles.templatetags.staticfiles import static
 
-from .forms import CategoryForm, EventForm
+from .forms import CategoryForm, EventForm, CategoryDeleteForm
 from .models import Category, Event
 from .helpers import is_admin, admin_route
 
@@ -132,4 +132,25 @@ class CategoryCreateView(View):
             return render(request, 'event.html', {'form': form, 'title': title})
 
         return redirect('events:events_list')
-        
+
+@method_decorator(admin_route, name='dispatch')
+class CategoryDeleteView(View):
+    def get(self, request):
+        form = CategoryDeleteForm()
+        title = "Delete Existing Category"
+        caution = "(Deleting a category deletes all the events in that category)"
+        return render(request, 'event.html', {'form': form, 'title': title, 'caution': caution})
+
+    def post(self, request):
+        form = CategoryDeleteForm(request.POST)
+        if form.is_valid():
+            category = form.cleaned_data.get('category')
+            category.delete()
+            return redirect('events:events_list')
+        else:
+            print(form.errors)
+            title = "Delete Existing Category"
+            caution = "(Deleting a category deletes all the events in that category)"
+            return render(request, 'event.html', {'form': form, 'title': title, 'caution': caution})
+
+        return redirect('events:events_list')

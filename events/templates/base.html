@@ -28,7 +28,8 @@
         <div style="float:right; margin-bottom:20px;" class="row">
           <a class="btn btn-success btn-md" href="{% url 'events:event_create' %}">Create Event</a>
           {% if is_admin %}
-              <a class="btn btn-success btn-md" href="{% url 'events:category_create' %}">Create Category</a>
+          <a class="btn btn-success btn-md" href="{% url 'events:category_create' %}">Create Category</a>
+          <a class="btn btn-success btn-md" href="{% url 'events:category_delete' %}">Delete Category</a>
           {% endif %}
         </div>
         <br />

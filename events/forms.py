@@ -1,4 +1,4 @@
-from django.forms import ModelForm
+from django.forms import Form, ModelForm, ModelChoiceField
 
 from .models import *
 
@@ -13,3 +13,6 @@ class EventForm(ModelForm):
     class Meta:
         model = Event
         exclude = ['approved']
+
+class CategoryDeleteForm(Form):
+    category = ModelChoiceField(queryset=Category.objects.all(), required=True)

@@ -2,7 +2,7 @@ from django.urls import path
 
 from .views import (EventsListView, EventCreateView, EventEditView,
                     EventDeleteView, CategoryCreateView, EventsCalendarView,
-                    EventApproveView)
+                    EventApproveView, CategoryDeleteView)
 
 app_name = "events"
 
@@ -13,5 +13,6 @@ urlpatterns = [
     path('edit/<int:event_id>', EventEditView.as_view(), name="event_edit"),
     path('approve/<int:event_id>', EventApproveView.as_view(), name="event_approve"),
     path('delete/<int:event_id>', EventDeleteView.as_view(), name="event_delete"),
-    path('category/create', CategoryCreateView.as_view(), name="category_create")
+    path('category/create', CategoryCreateView.as_view(), name="category_create"),
+    path('category/delete', CategoryDeleteView.as_view(), name="category_delete"),
 ]
