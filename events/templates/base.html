@@ -33,6 +33,13 @@
           {% endif %}
         </div>
         <br />
+
+        {% if display_message %}
+        <div class="row alert alert-primary" style="width:100%; margin:20px;">
+          {{display_message}}
+        </div>
+        {% endif %}
+
         <div class="row" style="width:100%; margin:0px;">
             {% block content %}
             {% endblock %}
@@ -43,7 +50,8 @@
     <!-- Bootstrap core JavaScript -->
     <script src="{% static "landing/vendor/jquery/jquery.min.js" %}"></script>
     <script src="{% static "landing/vendor/bootstrap/js/bootstrap.bundle.min.js" %}"></script>
-
+    <script src="{% static "js/linkify.min.js" %}"></script>
+    <script src="{% static "js/linkify-jquery.min.js" %}"></script>
   </body>
 
 </html>

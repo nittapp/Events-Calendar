@@ -17,9 +17,11 @@ from .helpers import is_admin, admin_route
 class EventsListView(View):
     def get(self, request):
         events = Event.objects.filter(end__gte=datetime.now()).order_by('start')
+        message = request.GET.get("message", "")
         return render(request, 'events_list.html', {
             'events': events,
-            'is_admin': is_admin(request)
+            'is_admin': is_admin(request),
+            'display_message': message
         })
 
 class EventsCalendarView(View):
@@ -56,12 +58,19 @@ class EventCreateView(View):
     def post(self, request):
         form = EventForm(request.POST, request.FILES)
         try:
+            if is_admin(request):
+                form = form.save(commit=False)
+                form.approved = True
             form.save()
         except ValueError as e:
             title = "Create New Event"
             return render(request, 'event.html', {'form': form, 'title': title})
 
-        return redirect('events:events_list')
+        if is_admin(request):
+           return redirect('events:events_list') 
+
+        message = "Event has been created. Event will be publicly visible after an admin approves it."
+        return redirect(reverse("events:events_list")+"?message="+message)
 
 
 @method_decorator(admin_route, name='dispatch')

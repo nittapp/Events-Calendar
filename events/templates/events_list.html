@@ -39,7 +39,7 @@
                             {% else %}
                                 <img class="img-fluid" src="{% static "images/default-image.png" %}" style="margin-bottom: 20px;">
                             {% endif %}
-                            <h5 style="margin-bottom: 20px;">{{event.description}}</h5>
+                            <h5 style="margin-bottom: 20px; word-wrap: break-word;" data-linkify="this">{{event.description}}</h5>
                         </center>
                         <p><b>Timings : </b> {{event.start}} to {{event.end}}</p>
                         <p><b>Venue : </b> {{event.venue}}</p>

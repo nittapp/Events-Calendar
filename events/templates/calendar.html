@@ -13,7 +13,9 @@
 	<link href="{% static "calendar/custom.css" %}" rel="stylesheet">    
     <script src="{% static "js/jquery.min.js" %}"></script>    
     <script src="{% static "bootstrap/dist/js/bootstrap.min.js" %}"></script>
-    <script src="{% static "calendar/custom.js" %}" rel="stylesheet"></script>
+	<script src="{% static "calendar/custom.js" %}" rel="stylesheet"></script>
+	<script src="{% static "js/linkify.min.js" %}"></script>
+    <script src="{% static "js/linkify-jquery.min.js" %}"></script>
 </head>
 
 
@@ -49,11 +51,12 @@
 			select: function(start, end, allDay) {
 			},
 			droppable: false, // this allows things to be dropped onto the calendar !!!	
-			events: JSON.parse("{{calendar_events}}".replace(/&quot;/g,'"')),
+			events: JSON.parse("{{calendar_events}}".replace(/&quot;/g,'"').replace(/(\r\n|\n)/g, "<br />")),
 			eventClick: function(event, jsEvent, view) {
 				$("#event-title").html(event.title);
 				$("#event-image").attr('src', event.image);
 				$("#event-description").html(event.description);
+				$("#event-description").linkify();
 				$("#event-timings").html("<b>Timings</b> : " + (event.start_display) + " to " + (event.end_display));
 				$("#event-category").html("<b>Category</b> : " + event.category);
 				$("#event-venue").html("<b>Venue</b> : " + event.venue);
@@ -80,7 +83,7 @@
 				<div class="modal-body" style="text-align:left;">
 					<center>
 						<img class="img-responsive" id="event-image" src="" style="margin-bottom: 20px;">
-						<h5 style="margin-bottom: 20px;" id="event-description"></h5>
+						<h5 style="margin-bottom: 20px; word-wrap: break-word;" id="event-description"></h5>
 					</center>
 					<p id="event-timings"></p>
 					<p id="event-venue"></p>
